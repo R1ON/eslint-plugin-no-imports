@@ -1,0 +1,26 @@
+{
+  "name": "eslint-plugin-no-imports",
+  "description": "Eslint plugin to prohibit imports outside specific directories.",
+  "version": "1.0.1",
+  "main": "index.js",
+  "author": "R1ON <get.my.email.name@yandex.ru>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/R1ON/eslint-plugin-no-imports"
+  },
+  "homepage": "https://github.com/R1ON/eslint-plugin-no-imports#readme",
+  "keywords": [
+    "eslint",
+    "plugin",
+    "import",
+    "import-control",
+    "import-rules",
+    "directory-imports",
+    "path-restrictions",
+    "path-control"
+  ],
+  "dependencies": {
+    "minimatch": "^7.4.2"
+  }
+}
