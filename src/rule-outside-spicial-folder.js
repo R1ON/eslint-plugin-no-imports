@@ -3,12 +3,14 @@ const minimatch = require('minimatch');
 
 module.exports = {
   create(context) {
-    const options = context.options[0] || {};
-    const directories = options.directories;
-    const ignore = options.ignore;
+    const { directories, ignore, aliases } = context.options[0] || {};
 
     if (!directories) {
       throw new Error('Missing required option "directories"');
+    }
+
+    if (aliases && !Array.isArray(aliases)) {
+      throw new Error('"aliases" must be an array');
     }
 
     const directoriesData = directories.map((directory) => {
@@ -34,12 +36,9 @@ module.exports = {
         }
 
         const filename = context.getFilename();
-        const sourcePath = path.resolve(filename, '..', source);
+        const sourcePath = getSourcePath(aliases, source, filename);
 
-        directoriesData.forEach((info) => {
-          const directoryPath = info.directoryPath;
-          const directoryName = info.directoryName;
-
+        directoriesData.forEach(({ directoryPath, directoryName }) => {
           const isIgnoredFolder = ignorePaths.some((path) => (
             minimatch(sourcePath, path)
           ));
@@ -59,3 +58,25 @@ module.exports = {
     };
   },
 };
+
+function getSourcePath(aliases, source, filename) {
+  const maybeAlias = !source.startsWith('.') && aliases;
+
+  return path.resolve(filename, '..', maybeAlias ? resolveAlias(aliases, source) : source);
+}
+
+function resolveAlias(aliases, importPath) {
+  for (let i = 0; i < aliases.length; i++) {
+    const { alias, pathToFolder } = aliases[i];
+
+    if (typeof alias !== 'string' || typeof pathToFolder !== 'string') {
+      throw new Error('The aliases array must contain an object with `alias` and `pathToFolder` keys. They should be strings.');
+    }
+
+    if (importPath.startsWith(alias)) {
+      return path.resolve(importPath.replace(alias, pathToFolder));
+    }
+  }
+
+  return importPath;
+}

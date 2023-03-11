@@ -11,7 +11,7 @@ module.exports = {
       "items": [
         {
           "type": "string",
-          "enum": ["error"]
+          "enum": ["error"],
         },
         {
           "type": "object",
@@ -19,18 +19,35 @@ module.exports = {
             "directories": {
               "type": "array",
               "items": {
-                "type": "string"
-              }
+                "type": "string",
+              },
+              "minItems": 1,
+            },
+            "aliases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "alias": {
+                    "type": "string",
+                  },
+                  "pathToFolder": {
+                    "type": "string",
+                  },
+                },
+                "required": ["alias", "pathToFolder"],
+              },
             },
             "ignore": {
               "type": "array",
               "items": {
-                "type": "string"
-              }
-            }
+                "type": "string",
+              },
+              "minItems": 1,
+            },
           },
           "additionalProperties": false
-        }
+        },
       ],
     },
   ],

@@ -42,6 +42,7 @@ Add to your `.eslintrc`:
       'error',
       {
         directories: ['./src/packages/brand', './src/packages/analytics'],
+        aliases: [{ alias: 'app', pathToFolder: './src' }, { alias: '@', pathToFolder: './modules' }],
         ignore: ['./bin/**/*'],
       },
     ],
@@ -60,7 +61,7 @@ import utils from 'alias/packages/brand/utils';
 ❌ Error - These files are outside the `brand` directory, so we will get an error.  
 import constants from '../packagesConstants';
 import utils from '../../srcUtils';
-import data from 'alias/modules/data';
+import data from '@/data';
 ```
 
 
@@ -78,4 +79,5 @@ import binConstaints from '../../../bin/constaints';
 | Name        | Required        | Description                                                                                                     |
 |-------------|-----------------|-----------------------------------------------------------------------------------------------------------------|
 | directories | +               | List of directories we are monitoring. If an import goes beyond the established directory, we receive an error. |
-| ignore      | -               | List of directories that are exceptions.                                                                        | 
+| ignore      | -               | List of directories that are exceptions.                                                                        |
+| aliases     | -               | If you have imports specified via aliases, you need to specify them here as well.                               |
