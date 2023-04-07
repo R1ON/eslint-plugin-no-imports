@@ -47,7 +47,7 @@ module.exports = {
             return;
           }
 
-          if (filename.includes(directoryName) && !sourcePath.startsWith(directoryPath)) {
+          if (filename.startsWith(directoryPath) && !sourcePath.startsWith(directoryPath)) {
             context.report({
               node,
               message: `Importing file outside ${directoryName} is not allowed.`,
