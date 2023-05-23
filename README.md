@@ -74,6 +74,10 @@ If you add an ignore section as shown in (How to use), eslint will not complain 
 import binConstaints from '../../../bin/constaints';
 ```
 
+## Windows
+
+When specifying a folder path in the sections: directories, ignore, aliases - using escape characters is prohibited. Otherwise, it will break the logic for Windows users.
+
 ## Options
 
 | Name        | Required        | Description                                                                                                     |

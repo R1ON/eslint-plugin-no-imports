@@ -1,5 +1,5 @@
 const path = require('path');
-const minimatch = require('minimatch');
+const { minimatch } = require('minimatch');
 
 module.exports = {
   create(context) {
@@ -24,7 +24,7 @@ module.exports = {
     });
 
     const ignorePaths = Array.isArray(ignore)
-      ? ignore.map((pattern) => path.resolve(pattern))
+      ? ignore.map(path.resolve)
       : [];
 
     return {
@@ -40,7 +40,7 @@ module.exports = {
 
         directoriesData.forEach(({ directoryPath, directoryName }) => {
           const isIgnoredFolder = ignorePaths.some((path) => (
-            minimatch(sourcePath, path)
+            minimatch(sourcePath, path, { allowWindowsEscape: false })
           ));
 
           if (isIgnoredFolder) {
