@@ -24,7 +24,7 @@ module.exports = {
     });
 
     const ignorePaths = Array.isArray(ignore)
-      ? ignore.map(path.resolve)
+      ? ignore.map((pattern) => path.resolve(pattern))
       : [];
 
     return {

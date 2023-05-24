@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-no-imports",
   "description": "Eslint plugin to prohibit imports outside specific directories.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "author": "R1ON <get.my.email.name@yandex.ru>",
   "license": "MIT",

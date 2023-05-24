@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.1]
+
+### Bug fix
+- Fixed error 'The "path" argument must be of type string.'
+
 ## [2.0.0]
 
 ### Breaking changes
