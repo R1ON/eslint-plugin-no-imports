@@ -1,8 +1,9 @@
 # Changelog
 
-## [2.0.1]
+## [2.0.2]
+- Added .DS_Store to gitignores
 
-### Bug fix
+## [2.0.1]
 - Fixed error 'The "path" argument must be of type string.'
 
 ## [2.0.0]
